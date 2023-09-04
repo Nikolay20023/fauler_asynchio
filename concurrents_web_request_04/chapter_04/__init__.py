@@ -3,7 +3,7 @@ from utils import async_timed
 import asyncio
 
 
-async_timed()
+@async_timed()
 async def fetch_status(
         session: ClientSession,
         url: str,
