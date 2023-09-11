@@ -1,7 +1,7 @@
-from threading import Lock, Thread
+from threading import RLock, Thread
 from typing import List
 
-list_lock = Lock()
+list_lock = RLock()
 
 def sum_list(int_list: List[int]) -> int:
     print('Ожидание блокировки...')
@@ -13,8 +13,8 @@ def sum_list(int_list: List[int]) -> int:
         else:
             head, *tail = int_list
             print('Суммируется остаток миссива')
-            return head + sum_list(*tail)
+            return head + sum_list(tail)
 
-thread = Thread(target=sum_list, args=([1, 2, 3, 4]))
+thread = Thread(target=sum_list, args=([1, 2, 3, 4], ))
 thread.start()
 thread.join()
