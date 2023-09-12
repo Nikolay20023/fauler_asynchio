@@ -1,6 +1,5 @@
 import asyncio
 
-
 async def delay(delay_second: int):
     print(f'засыпаю {delay_second} с')
     await asyncio.sleep(delay_second)

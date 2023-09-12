@@ -1,16 +1,19 @@
+from __future__ import annotations
+
 import asyncio
 from asyncio import Transport, Future, AbstractEventLoop
 from typing import Optional
 
+
 class HTTPGetClientProtocol(asyncio.Protocol):
 
-    def __init__(self, host:str, loop: AbstractEventLoop) -> None:
+    def __init__(self, host: str, loop: AbstractEventLoop) -> None:
         self._host = host
         self._future: Future = loop.create_future()
         self._transport: Optional[Transport] = None
         self._response_buffer: bytes = b''
 
-    async def get_respnse(self):
+    async def get_response(self):
         return await self._future
 
     def _get_request_bytes(self):
